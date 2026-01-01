@@ -1,11 +1,181 @@
 /* ===== Global Styles ===== */
+
+/* ===== Global Styles & Reset ===== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  font-family: Poppins, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
+
+/* ===== Global Styles & Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary: #0077b5;
+    --accent: #00b4ff;
+    --dark: #1f1f1f;
+}
+
+body {
+    background: #f3f3f3;
+}
+
+/* ===== Sidebar (Desktop) ===== */
+.sidebar {
+    background: var(--dark);
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 40px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0 20px;
+}
+
+.sidebar nav li {
+    margin: 15px 0;
+}
+
+.sidebar nav li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 8px;
+}
+
+.sidebar nav li a:hover, .sidebar nav li a.active {
+    background: var(--primary);
+}
+
+/* ===== Main Content ===== */
+.main {
+    margin-left: 250px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+/* ===== Menu Toggle (Mobile Only) ===== */
+.menu-toggle {
+    display: none; /* Hidden on Desktop */
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    cursor: pointer;
+}
+
+.menu-toggle img {
+    width: 35px;
+    height: 35px;
+}
+
+/* ===== Responsive Media Query ===== */
+@media screen and (max-width: 1000px) {
+    .menu-toggle {
+        display: block; /* Show toggle on Mobile */
+    }
+
+    .sidebar {
+        left: -250px; /* Hide sidebar off-screen */
+    }
+
+    .sidebar.active {
+        left: 0; /* Slide in when active */
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Add your existing projectCard and form styles below here... */
+:root {
+    --primary: #0077b5;
+    --accent: #00b4ff;
+    --dark: #1f1f1f;
+}
+
+body {
+    background: #f3f3f3;
+}
+
+/* ===== Sidebar (Desktop) ===== */
+.sidebar {
+    background: var(--dark);
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 40px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0 20px;
+}
+
+.sidebar nav li {
+    margin: 15px 0;
+}
+
+.sidebar nav li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 8px;
+}
+
+.sidebar nav li a:hover, .sidebar nav li a.active {
+    background: var(--primary);
+}
+
+/* ===== Main Content ===== */
+.main {
+    margin-left: 250px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+
+/* ===== Responsive Media Query ===== */
+@media screen and (max-width: 1000px) {
+    .menu-toggle {
+        display: block; /* Show toggle on Mobile */
+    }
+
+    .sidebar {
+        left: -250px; /* Hide sidebar off-screen */
+    }
+
+    .sidebar.active {
+        left: 0; /* Slide in when active */
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Add your existing projectCard and form styles below here... */
 
 /* ===== Root Variables ===== */
 :root {
@@ -40,7 +210,7 @@ a:hover {
 
 /* ===== Sidebar ===== */
 .sidebar {
-  background: var(--dark);
+  background: gray;
   width: 250px;
   height: 100vh;
   position: fixed;
@@ -90,6 +260,7 @@ a:hover {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   gap: 40px;
   transition: 0.3s;
+  margin-top:100px;
 }
 
 /* ===== Developer Info ===== */
@@ -270,19 +441,6 @@ form textarea:focus {
   flex: 1;
 }
 
-/* ===== Menu Toggle ===== */
-.menu-toggle {
-  display: none;
-  position: fixed;
-  top: 15px;
-  left: 20px;
-  z-index: 1100;
-}
-.menu-toggle img {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
 
 /* Sidebar hidden for small screens */
 .sidebar {

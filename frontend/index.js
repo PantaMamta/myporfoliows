@@ -1,18 +1,25 @@
-// ---------------- Menu Toggle ----------------
-const hamburger = document.getElementById("open-menu");
-const cross = document.getElementById("close-menu");
-const sidebar = document.querySelector(".sidebar");
+document.addEventListener("DOMContentLoaded", () => {
+    const openMenu = document.getElementById("open-menu");
+    const closeMenu = document.getElementById("close-menu");
+    const sidebar = document.querySelector(".sidebar");
 
-hamburger.addEventListener("click", () => {
-  sidebar.classList.add("active");
-  hamburger.style.display = "none";
-  cross.style.display = "block";
-});
+    // Open Sidebar
+    if (openMenu) {
+        openMenu.addEventListener("click", () => {
+            sidebar.classList.add("active");
+            openMenu.style.display = "none";
+            closeMenu.style.display = "block";
+        });
+    }
 
-cross.addEventListener("click", () => {
-  sidebar.classList.remove("active");
-  cross.style.display = "none";
-  hamburger.style.display = "block";
+    // Close Sidebar
+    if (closeMenu) {
+        closeMenu.addEventListener("click", () => {
+            sidebar.classList.remove("active");
+            closeMenu.style.display = "none";
+            openMenu.style.display = "block";
+        });
+    }
 });
 
 // ---------------- Contact Form ----------------
