@@ -1,28 +1,35 @@
+// ================= MENU TOGGLE =================
 document.addEventListener("DOMContentLoaded", () => {
-    const openMenu = document.getElementById("open-menu");
-    const closeMenu = document.getElementById("close-menu");
-    const sidebar = document.querySelector(".sidebar");
+  const openMenu = document.getElementById("open-menu");
+  const closeMenu = document.getElementById("close-menu");
+  const sidebar = document.querySelector(".sidebar");
 
-    // Open Sidebar
-    if (openMenu) {
-        openMenu.addEventListener("click", () => {
-            sidebar.classList.add("active");
-            openMenu.style.display = "none";
-            closeMenu.style.display = "block";
-        });
-    }
+  if (openMenu) {
+    openMenu.addEventListener("click", () => {
+      sidebar.classList.add("active");
+      openMenu.style.display = "none";
+      closeMenu.style.display = "block";
+    });
+  }
 
-    // Close Sidebar
-    if (closeMenu) {
-        closeMenu.addEventListener("click", () => {
-            sidebar.classList.remove("active");
-            closeMenu.style.display = "none";
-            openMenu.style.display = "block";
-        });
-    }
+  if (closeMenu) {
+    closeMenu.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      closeMenu.style.display = "none";
+      openMenu.style.display = "block";
+    });
+  }
 });
 
-// ---------------- Contact Form ----------------
+// ================= API BASE URL =================
+// Local → http://localhost:5000
+// Render → https://your-backend-name.onrender.com
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-BACKEND-NAME.onrender.com";
+
+// ================= CONTACT FORM =================
 document.getElementById("contactForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -34,22 +41,22 @@ document.getElementById("contactForm")?.addEventListener("submit", async (e) => 
   };
 
   try {
-    const res = await fetch("http://localhost:5000/api/contact", {
+    const res = await fetch(`${API_BASE_URL}/api/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
 
     const result = await res.json();
-    alert(result.message); // Show success message
-    form.reset(); // Clear the form
+    alert(result.message);
+    form.reset();
   } catch (err) {
     console.error(err);
-    alert("Error sending message. Check backend!");
+    alert("Error sending message. Backend not reachable!");
   }
 });
 
-// ---------------- Subscribe Form ----------------
+// ================= SUBSCRIBE FORM =================
 document.getElementById("subscribeForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -57,17 +64,17 @@ document.getElementById("subscribeForm")?.addEventListener("submit", async (e) =
   const data = { email: form.email.value };
 
   try {
-    const res = await fetch("http://localhost:5000/api/subscribe", {
+    const res = await fetch(`${API_BASE_URL}/api/subscribe`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
 
     const result = await res.json();
-    alert(result.message); // Show success message
-    form.reset(); // Clear the form
+    alert(result.message);
+    form.reset();
   } catch (err) {
     console.error(err);
-    alert("Error subscribing. Check backend!");
+    alert("Error subscribing. Backend not reachable!");
   }
 });

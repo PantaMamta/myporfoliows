@@ -8,21 +8,29 @@ const Contact = require("./models/Contact");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-/* Middleware */
-app.use(cors());
+// ================= MIDDLEWARE =================
 app.use(express.json());
 
-/* MongoDB connection */
+app.use(cors({
+  origin: [
+    "http://localhost:5500",
+    "https://YOUR-FRONTEND-NAME.onrender.com"
+  ],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
+// ================= MONGODB =================
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.error("❌ MongoDB Error:", err));
 
-/* Health check */
+// ================= ROUTES =================
 app.get("/", (req, res) => {
   res.send("Backend running 🚀");
 });
 
-/* SAVE CONTACT */
+// SAVE CONTACT
 app.post("/api/contact", async (req, res) => {
   try {
     const { email, phone, message } = req.body;
@@ -32,7 +40,7 @@ app.post("/api/contact", async (req, res) => {
     }
 
     const contact = new Contact({ email, phone, message });
-    await contact.save(); // 🔥 Saved to MongoDB
+    await contact.save();
 
     res.status(201).json({ message: "Contact saved successfully!" });
   } catch (error) {
@@ -41,13 +49,13 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-/* View all contacts (optional for testing) */
+// VIEW CONTACTS (testing only)
 app.get("/api/contact", async (req, res) => {
   const contacts = await Contact.find().sort({ createdAt: -1 });
   res.json(contacts);
 });
 
-/* Start server */
+// ================= START SERVER =================
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
