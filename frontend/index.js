@@ -78,3 +78,30 @@ document.getElementById("subscribeForm")?.addEventListener("submit", async (e) =
     alert("Error subscribing. Backend not reachable!");
   }
 });
+
+function updateClock() {
+  const now = new Date();
+
+  let hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+
+  document.getElementById("hour").innerText = String(hours).padStart(2, "0");
+  document.getElementById("minute").innerText = String(minutes).padStart(2, "0");
+  document.getElementById("second").innerText = String(seconds).padStart(2, "0");
+  document.getElementById("ampm").innerText = ampm;
+
+  const weekday = now.toLocaleString("en-US", { weekday: "long" });
+  const month = now.toLocaleString("en-US", { month: "long" });
+  const day = now.getDate();
+  const year = now.getFullYear();
+
+  document.getElementById("full-date").innerText =
+    `${weekday}, ${day} ${month} ${year}`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();

@@ -488,3 +488,26 @@ form textarea:focus {
     font-size: 20px;
   }
 }
+
+
+.clock-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(240, 248, 255, 0.85)
+  );
+
+  padding: 14px 24px;
+  border-radius: 18px;
+  margin-bottom: 35px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(14px);
+
+  font-family: "Segoe UI", sans-serif;
+}
